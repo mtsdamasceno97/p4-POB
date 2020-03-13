@@ -8,8 +8,8 @@ public class Deletar {
 		Fachada.inicializar();
 		try {
 			System.out.println("deletando...");
-			Fachada.excluirCliente("123456781");
-			System.out.println("deletou cliente do cpf: 123456781");
+			Fachada.excluirCliente("123456782");
+			System.out.println("deletou cliente do cpf: 123456782");
 
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
