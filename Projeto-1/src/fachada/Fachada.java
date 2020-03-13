@@ -4,9 +4,14 @@
 
 package fachada;
 
+import java.util.List;
+
 import dao.DAO;
 import dao.DAOCliente;
+import modelo.Aluguel;
 import modelo.Cliente;
+
+
 
 public class Fachada {
 	private static DAOCliente daocliente = new DAOCliente();  
@@ -34,6 +39,34 @@ public class Fachada {
 		DAO.commit();
 		return c;
 	}	
+	
+	public static void excluirCliente(String cpf) throws  Exception{
+		DAO.begin();	
+		Cliente c = daocliente.read(cpf);
+		if(c == null) {
+			DAO.rollback();
+			throw new Exception("Cliente não cadastrado no sistema !!!");
+		}
+		
+		daocliente.delete(c);
+		DAO.commit();
+			
+	}
+	
+	public static String listarClientes(){
+		List<Cliente> clientes = daocliente.readAll();
+		String texto="-----------Listagem de Clientes-----------\n";
+		for (Cliente cl : clientes) {
+			texto += cl +"\n";
+		}
+		return texto;
+	}
+	
+	
+	
+	
+
+	
 
 //	public static Aluno cadastrarAluno(String nome, double nota) 
 //			throws  Exception{
