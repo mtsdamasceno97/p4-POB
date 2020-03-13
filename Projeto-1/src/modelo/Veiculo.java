@@ -10,6 +10,8 @@ public class Veiculo {
 	private int ano;
 	private ArrayList<Aluguel> aluguel = new ArrayList<Aluguel>();
 	
+	
+	
 	// CONSTRUTOR
 	public Veiculo (String placa, String marca, String modelo, int ano) {
 		this.placa = placa;
