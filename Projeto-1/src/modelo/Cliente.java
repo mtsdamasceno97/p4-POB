@@ -8,7 +8,7 @@ public class Cliente {
 	private String nome;
 	private String endereco;
 	private int idade;
-	private ArrayList<Aluguel> aluguel;
+	private ArrayList<Aluguel> aluguel = new ArrayList<Aluguel>();
 	
 
 	// CONSTRUTOR

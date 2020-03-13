@@ -1,5 +1,3 @@
-/*faustopob@gmail.com*/
-
 package modelo;
 
 import java.time.LocalDateTime;
@@ -9,13 +7,17 @@ public class Aluguel {
 	private LocalDateTime dataAluguel;
 	private LocalDateTime dataDevolucao;
 	private double valorDiaria;
+	private Veiculo veiculo;
+	private Cliente cliente;
 	
 	// CONSTRUTOR
-	public Aluguel(LocalDateTime dataAluguel, LocalDateTime dataDevolucao, double valorDiaria) {
+	public Aluguel(LocalDateTime dataAluguel, LocalDateTime dataDevolucao, double valorDiaria, Cliente cliente, Veiculo veiculo) {
 		super();
 		this.dataAluguel = dataAluguel;
 		this.dataDevolucao = dataDevolucao;
 		this.valorDiaria = valorDiaria;
+		this.cliente = cliente;
+		this.veiculo = veiculo;
 	}
 	
 	// GET & SET

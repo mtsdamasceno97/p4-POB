@@ -60,13 +60,7 @@ public class Fachada {
 			texto += cl +"\n";
 		}
 		return texto;
-	}
-	
-	
-	
-	
-
-	
+	}	
 
 //	public static Aluno cadastrarAluno(String nome, double nota) 
 //			throws  Exception{

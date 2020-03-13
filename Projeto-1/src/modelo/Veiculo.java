@@ -8,7 +8,7 @@ public class Veiculo {
 	private String marca;
 	private String modelo;
 	private int ano;
-	private ArrayList<Aluguel> aluguel;
+	private ArrayList<Aluguel> aluguel = new ArrayList<Aluguel>();
 	
 	// CONSTRUTOR
 	public Veiculo (String placa, String marca, String modelo, int ano) {
