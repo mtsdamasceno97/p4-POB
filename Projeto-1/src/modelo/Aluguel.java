@@ -1,19 +1,21 @@
 package modelo;
 
-import java.time.LocalDateTime;
+import java.sql.Date;
+import java.time.LocalDate;
+
 
 public class Aluguel {
 
-	private LocalDateTime dataAluguel;
-	private LocalDateTime dataDevolucao;
+	private LocalDate dataAluguel;
+	private String dataDevolucao;
 	private double valorDiaria;
 	private Veiculo veiculo;
 	private Cliente cliente;
 	
 	// CONSTRUTOR
-	public Aluguel(LocalDateTime dataAluguel, LocalDateTime dataDevolucao, double valorDiaria, Cliente cliente, Veiculo veiculo) {
+	public Aluguel(String dataDevolucao, double valorDiaria, Cliente cliente, Veiculo veiculo) {
 		super();
-		this.dataAluguel = dataAluguel;
+		this.dataAluguel = LocalDate.now();
 		this.dataDevolucao = dataDevolucao;
 		this.valorDiaria = valorDiaria;
 		this.cliente = cliente;
@@ -21,16 +23,16 @@ public class Aluguel {
 	}
 	
 	// GET & SET
-	public LocalDateTime getDataAluguel() {
+	public LocalDate getDataAluguel() {
 		return dataAluguel;
 	}
-	public void setDataAluguel(LocalDateTime dataAluguel) {
+	public void setDataAluguel(LocalDate dataAluguel) {
 		this.dataAluguel = dataAluguel;
 	}
-	public LocalDateTime getDataDevolucao() {
+	public String getDataDevolucao() {
 		return dataDevolucao;
 	}
-	public void setDataDevolucao(LocalDateTime dataDevolucao) {
+	public void setDataDevolucao(String dataDevolucao) {
 		this.dataDevolucao = dataDevolucao;
 	}
 	public double getValorDiaria() {
@@ -43,7 +45,10 @@ public class Aluguel {
 	@Override
 	public String toString() {
 		return "Aluguel [dataAluguel=" + dataAluguel + ", dataDevolucao=" + dataDevolucao + ", valorDiaria="
-				+ valorDiaria + "]";
+				+ valorDiaria + ", veiculo=" + veiculo + ", cliente=" + cliente + "]";
 	}
+
+
+	
 		
 }

@@ -10,7 +10,9 @@ import com.db4o.cs.Db4oClientServer;
 import com.db4o.cs.config.ClientConfiguration;
 import com.db4o.query.Query;
 
+import modelo.Aluguel;
 import modelo.Cliente;
+import modelo.Veiculo;
 
 
 public abstract class DAO<T> implements DAOInterface<T> {
@@ -30,12 +32,12 @@ public abstract class DAO<T> implements DAOInterface<T> {
 		config.common().objectClass(Cliente.class).cascadeOnUpdate(true);
 		config.common().objectClass(Cliente.class).cascadeOnDelete(true);
 		config.common().objectClass(Cliente.class).cascadeOnActivate(true);
-//		config.common().objectClass(Aluno.class).cascadeOnUpdate(true);
-//		config.common().objectClass(Aluno.class).cascadeOnDelete(true);
-//		config.common().objectClass(Aluno.class).cascadeOnActivate(true);
-//		config.common().objectClass(Telefone.class).cascadeOnUpdate(true);
-////		config.common().objectClass(Telefone.class).cascadeOnDelete(true);
-//		config.common().objectClass(Telefone.class).cascadeOnActivate(true);
+		config.common().objectClass(Veiculo.class).cascadeOnUpdate(true);
+		config.common().objectClass(Veiculo.class).cascadeOnDelete(true);
+		config.common().objectClass(Veiculo.class).cascadeOnActivate(true);
+		config.common().objectClass(Aluguel.class).cascadeOnUpdate(true);
+		config.common().objectClass(Aluguel.class).cascadeOnDelete(true);
+		config.common().objectClass(Aluguel.class).cascadeOnActivate(true);
 
 		// 		indices
 		config.common().objectClass(Cliente.class).objectField("nome").indexed(true);
@@ -50,12 +52,12 @@ public abstract class DAO<T> implements DAOInterface<T> {
 		config.common().objectClass(Cliente.class).cascadeOnUpdate(true);
 		config.common().objectClass(Cliente.class).cascadeOnDelete(true);
 		config.common().objectClass(Cliente.class).cascadeOnActivate(true);
-//		config.common().objectClass(Aluno.class).cascadeOnUpdate(true);
-//		config.common().objectClass(Aluno.class).cascadeOnDelete(true);
-//		config.common().objectClass(Aluno.class).cascadeOnActivate(true);
-//		config.common().objectClass(Telefone.class).cascadeOnUpdate(true);
-////		config.common().objectClass(Telefone.class).cascadeOnDelete(true);
-//		config.common().objectClass(Telefone.class).cascadeOnActivate(true);
+		config.common().objectClass(Veiculo.class).cascadeOnUpdate(true);
+		config.common().objectClass(Veiculo.class).cascadeOnDelete(true);
+		config.common().objectClass(Veiculo.class).cascadeOnActivate(true);
+		config.common().objectClass(Aluguel.class).cascadeOnUpdate(true);
+		config.common().objectClass(Aluguel.class).cascadeOnDelete(true);
+		config.common().objectClass(Aluguel.class).cascadeOnActivate(true);
 
 		// 		indices
 		config.common().objectClass(Cliente.class).objectField("nome").indexed(true);

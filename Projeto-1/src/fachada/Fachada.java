@@ -7,16 +7,19 @@ package fachada;
 import java.util.List;
 
 import dao.DAO;
+import dao.DAOAluguel;
 import dao.DAOCliente;
+import dao.DAOVeiculo;
 import modelo.Aluguel;
 import modelo.Cliente;
+import modelo.Veiculo;
 
 
 
 public class Fachada {
-	private static DAOCliente daocliente = new DAOCliente();  
-//	private static DAOAluno daoaluno = new DAOAluno();  
-//	private static DAOTelefone daotelefone = new DAOTelefone();  
+	private static DAOCliente daocliente = new DAOCliente();
+	private static DAOVeiculo daoveiculo = new DAOVeiculo();
+	private static DAOAluguel daoaluguel = new DAOAluguel(); 
 
 
 	public static void inicializar(){
@@ -25,7 +28,9 @@ public class Fachada {
 	public static void finalizar(){
 		DAO.close();
 	}
-
+	
+// ------------------------------------------ CLIENTES -------------------------------------------	
+	
 	public static Cliente cadastrarCliente(String cpf, String nome, String endereco, int idade) throws  Exception{
 		DAO.begin();	
 		Cliente c = daocliente.read(nome);
@@ -39,6 +44,7 @@ public class Fachada {
 		DAO.commit();
 		return c;
 	}	
+	
 	
 	public static void excluirCliente(String cpf) throws  Exception{
 		DAO.begin();	
@@ -60,7 +66,102 @@ public class Fachada {
 			texto += cl +"\n";
 		}
 		return texto;
+	}
+	
+// ----------------------------------------- VEICULOS -----------------------------------------------------------------	
+	
+	public static Veiculo cadastrarVeiculo(String placa, String marca, String modelo, int ano) throws  Exception{
+		DAO.begin();	
+		Veiculo v = daoveiculo.read(placa);
+		if(v != null) {
+			DAO.rollback();
+			throw new Exception("Já cadastrado no sistema: " + placa);
+		}
+
+		v = new Veiculo(placa, marca, modelo, ano);
+		daoveiculo.create(v);	
+		DAO.commit();
+		return v;
 	}	
+	
+	
+	public static String listarVeiculos(){
+		List<Veiculo> veiculos = daoveiculo.readAll();
+		String texto="-----------Listagem de Veiculos-----------\n";
+		for (Veiculo vl : veiculos) {
+			texto += vl +"\n";
+		}
+		return texto;
+	}
+
+	public static void pesquisarVeiculo(String placa) throws Exception{
+		Veiculo v = daoveiculo.read(placa);
+
+		if(v == null) {
+			throw new Exception("O veiculo não existe!!!");
+		}else {
+		
+			if(daoaluguel.read(placa) != null) {
+				throw new Exception("O veiculo está indisponivel para aluguel !!!");
+			} else if(daoaluguel.read(placa) == null){
+						throw new Exception("O veiculo está disponivel para aluguel !!!");
+			}
+		}
+		
+	}
+	
+	public static void excluirVeiculo(String placa) throws  Exception{
+		DAO.begin();	
+		Veiculo v = daoveiculo.read(placa);
+		if(v == null) {
+			DAO.rollback();
+			throw new Exception("Veiculo não cadastrado no sistema !!!");
+		}
+		
+		daoveiculo.delete(v);
+		DAO.commit();
+			
+	}
+	
+//-------------------------------------------- ALUGUEL -------------------------------------------------------	
+	
+	public static Aluguel cadastrarAluguel(String dataDevolucao, double valorDiaria, Cliente cliente, Veiculo veiculo) throws  Exception{
+		DAO.begin();	
+		Aluguel a = daoaluguel.read(veiculo.getPlaca());
+		if(a != null) {
+			DAO.rollback();
+			throw new Exception("Já cadastrado no sistema: " + "Veiculo: " + veiculo + "Data de devolução: " + dataDevolucao);
+		}
+
+		a = new Aluguel(dataDevolucao, valorDiaria, cliente,veiculo);
+		daoaluguel.create(a);
+		//cliente.setAluguel(a);
+		//veiculo.setAluguel(a);
+		DAO.commit();
+		return a;
+	}
+	
+	public static void excluirAluguel(String placa) throws  Exception{
+		DAO.begin();	
+		Aluguel a = daoaluguel.read(placa);
+		if(a == null) {
+			DAO.rollback();
+			throw new Exception("Aluguel não cadastrado no sistema !!!");
+		}
+		
+		daoaluguel.delete(a);
+		DAO.commit();
+			
+	}
+	
+	public static String listarAlugueis(){
+		List<Aluguel> alugueis = daoaluguel.readAll();
+		String texto="-----------Listagem de Alugueis-----------\n";
+		for (Aluguel al : alugueis) {
+			texto += al +"\n";
+		}
+		return texto;
+	}
 
 //	public static Aluno cadastrarAluno(String nome, double nota) 
 //			throws  Exception{

@@ -10,7 +10,7 @@ public class Cliente {
 	private int idade;
 	private ArrayList<Aluguel> aluguel = new ArrayList<Aluguel>();
 	
-
+	
 	// CONSTRUTOR
 	public Cliente (String cpf, String nome, String endereco, int idade) {
 		this.cpf = cpf;
@@ -47,8 +47,8 @@ public class Cliente {
 	public ArrayList<Aluguel> getAluguel() {
 		return aluguel;
 	}
-	public void setAluguel(ArrayList<Aluguel> aluguel) {
-		this.aluguel = aluguel;
+	public void setAluguel(Aluguel aluguel) {
+		this.aluguel.add(aluguel);
 	}
 
 	@Override

@@ -48,8 +48,8 @@ public class Veiculo {
 	public ArrayList<Aluguel> getAluguel() {
 		return aluguel;
 	}
-	public void setAluguel(ArrayList<Aluguel> aluguel) {
-		this.aluguel = aluguel;
+	public void setAluguel(Aluguel aluguel) {
+		this.aluguel.add(aluguel);
 	}
 
 	@Override
